@@ -12,6 +12,12 @@ class Tick:
     exchange: Optional[str] = None
     bid: Optional[float] = None
     ask: Optional[float] = None
+    bid_size: Optional[float] = None
+    ask_size: Optional[float] = None
+    bid_depth: List[Dict[str, float]] = field(default_factory=list)
+    ask_depth: List[Dict[str, float]] = field(default_factory=list)
+    bid_size: Optional[float] = None
+    ask_size: Optional[float] = None
 
 
 @dataclass

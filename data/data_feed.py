@@ -129,6 +129,8 @@ class DataFeed:
             best_asks = depth.get("sell", [])
             bid = best_bids[0]["price"] if best_bids else t.get("last_price", 0)
             ask = best_asks[0]["price"] if best_asks else t.get("last_price", 0)
+            bid_size = best_bids[0].get("quantity") if best_bids else None
+            ask_size = best_asks[0].get("quantity") if best_asks else None
             meta = self.token_map.get(t["instrument_token"], {})
             tick = Tick(
                 symbol=meta.get("symbol", str(t["instrument_token"])),
@@ -137,6 +139,10 @@ class DataFeed:
                 volume=float(t.get("volume", 0)),
                 bid=bid,
                 ask=ask,
+                bid_size=bid_size,
+                ask_size=ask_size,
+                bid_depth=[{"price": b.get("price"), "quantity": b.get("quantity")} for b in best_bids],
+                ask_depth=[{"price": a.get("price"), "quantity": a.get("quantity")} for a in best_asks],
                 timestamp=datetime.utcnow(),
             )
             self._dispatch_tick(tick)
