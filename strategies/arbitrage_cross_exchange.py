@@ -77,6 +77,8 @@ class ArbitrageCrossExchangeStrategy(StrategyBase):
                     return []
                 buy_limit = self._depth_price("BUY", buy_price, ask_bse)
                 sell_limit = self._depth_price("SELL", sell_price, bid_nse)
+                print(f"[ArbTick] {sym} bid={bid_nse} ask={ask_bse}")
+                print(f"[ArbTick] {sym} edge_buy_bse_sell_nse={edge_buy_bse_sell_nse}")
                 signals.extend(
                     [
                         Signal(
@@ -116,6 +118,8 @@ class ArbitrageCrossExchangeStrategy(StrategyBase):
                     return []
                 buy_limit = self._depth_price("BUY", buy_price, ask_nse)
                 sell_limit = self._depth_price("SELL", sell_price, bid_bse)
+                print(f"[ArbTick] {sym} bid={bid_bse} ask={ask_nse}")
+                print(f"[ArbTick] {sym} edge_buy_nse_sell_bse={edge_buy_nse_sell_bse}")
                 signals.extend(
                     [
                         Signal(

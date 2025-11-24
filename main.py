@@ -191,10 +191,10 @@ def main() -> None:
     signal.signal(signal.SIGTERM, shutdown)
 
     while True:
-        time.sleep(1)
-        if args.mode != "live" and data_feed and data_feed._thread and not data_feed._thread.is_alive():
-            logging.getLogger(__name__).info("Data replay finished; shutting down.")
-            shutdown(signal.SIGTERM, None)
+      time.sleep(1)
+      if args.mode == "demo" and data_feed and data_feed._thread and not data_feed._thread.is_alive():
+          logging.getLogger(__name__).info("Data replay finished; shutting down.")
+          shutdown(signal.SIGTERM, None)
 
 
 if __name__ == "__main__":

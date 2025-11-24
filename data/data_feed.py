@@ -113,11 +113,11 @@ class DataFeed:
         if self._thread and self._thread.is_alive():
             self._thread.join(timeout=2)
 
-    def _on_connect(self, ws, response) -> None:  # pragma: no cover - network callback
+    def _on_connect(self, ws, response):
         logger.info("Connected to Zerodha WebSocket; subscribing tokens")
-        # Placeholder: token mapping depends on instrument dump; use config mapping in production.
-        self._kite_ticker.subscribe(self.symbols)
-        self._kite_ticker.set_mode(self._kite_ticker.MODE_FULL, self.symbols)
+        tokens = list(self.token_map.keys()) if self.token_map else self.symbols
+        self._kite_ticker.subscribe(tokens)
+        self._kite_ticker.set_mode(self._kite_ticker.MODE_FULL, tokens)
 
     def _on_close(self, ws, code, reason) -> None:  # pragma: no cover - network callback
         logger.warning("Zerodha WebSocket closed (%s): %s", code, reason)
