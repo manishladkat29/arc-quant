@@ -91,7 +91,7 @@ class DataFeed:
         self._kite_ticker.on_connect = self._on_connect
         self._kite_ticker.on_close = self._on_close
 
-        self._thread = threading.Thread(target=self._kite_ticker.connect, kwargs={"threaded": True, "disable_ssl": False})
+        self._thread = threading.Thread(target=self._kite_ticker.connect, kwargs={"threaded": True})
         self._thread.daemon = True
         self._thread.start()
 
