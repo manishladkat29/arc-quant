@@ -6,7 +6,7 @@ from utils.models import Signal, Tick
 
 ENTRY_THRESHOLD = 0.05
 EXIT_THRESHOLD = 0.02
-COST_PER_UNIT = 0.031
+DEFAULT_COST_PER_UNIT = 0.031
 PRICE_BUFFER = 0.01
 QTY = {"GOLDBEES": 10000, "SILVERBEES": 5000}
 DEPTH_USAGE_PCT = 0.8
@@ -22,6 +22,8 @@ class ArbitrageCrossExchangeStrategy(StrategyBase):
         self.positions = {sym: 0 for sym in self.symbols}
         self.depth_usage_pct = parameters.get("depth_usage_pct", DEPTH_USAGE_PCT)
         self.max_depth_levels = parameters.get("max_depth_levels", MAX_DEPTH_LEVELS)
+        self.cost_per_unit = parameters.get("cost_per_unit", DEFAULT_COST_PER_UNIT)
+        self.cost_per_unit_by_symbol = parameters.get("cost_per_unit_by_symbol", {})
         self.book: Dict[Tuple[str, str], Dict[str, Optional[float]]] = {}
 
     def on_tick(self, tick: Tick):
@@ -47,8 +49,12 @@ class ArbitrageCrossExchangeStrategy(StrategyBase):
         ask_bse, bid_bse = bse.get("ask"), bse.get("bid")
         if None in (ask_nse, bid_nse, ask_bse, bid_bse):
             return []
-        edge_buy_nse_sell_bse = (bid_bse - ask_nse) - COST_PER_UNIT
-        edge_buy_bse_sell_nse = (bid_nse - ask_bse) - COST_PER_UNIT
+        # Guard against bad quotes that create nonsensical edges (e.g., zero/negative or inverted books).
+        if min(ask_nse, bid_nse, ask_bse, bid_bse) <= 0:
+            return []
+        fee = self.cost_per_unit_by_symbol.get(sym, self.cost_per_unit)
+        edge_buy_nse_sell_bse = (bid_bse - ask_nse) - fee
+        edge_buy_bse_sell_nse = (bid_nse - ask_bse) - fee
         spread = abs(bid_nse - bid_bse)
         signals = []
         base_qty = QTY.get(sym, 0)
