@@ -1,0 +1,43 @@
+broker:
+  name: "dummy"
+  api_key: ""
+  api_secret: ""
+  access_token: ""
+  capital: 100000
+
+strategies:
+  - name: "MeanReversionTest"
+    class: "strategies.mean_revert.MeanReversionStrategy"
+    enabled: true
+    parameters:
+      lookback_window: 3
+      entry_threshold: 0.5
+      exit_threshold: 0.2
+      symbol: "TEST_MEAN"
+      quantity: 10
+  - name: "TrendFollowTest"
+    class: "strategies.trend_follow.TrendFollowStrategy"
+    enabled: true
+    parameters:
+      ma_length: 3
+      symbol: "TEST_TREND"
+      quantity: 10
+      take_profit: 0.02
+      stop_loss: 0.01
+
+risk:
+  max_position_per_trade: 1000
+  max_daily_drawdown: 0.2
+  max_total_leverage: 3.0
+  max_orders_per_minute: 100
+
+schedule:
+  trading_hours:
+    start: "00:00"
+    end: "23:59"
+  run_heartbeat_every: 0
+
+notifications:
+  slack_webhook: ""
+  telegram_bot_token: ""
+  telegram_chat_id: ""
