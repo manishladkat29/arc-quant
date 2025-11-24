@@ -6,8 +6,8 @@ try:
 except ImportError:
     KiteConnect = None  # pragma: no cover - optional dependency
 
-from quant_trading_system.brokers.base import BrokerBase
-from quant_trading_system.utils.models import Order
+from brokers.base import BrokerBase
+from utils.models import Order
 
 logger = logging.getLogger(__name__)
 

@@ -8,18 +8,18 @@ import time
 from pathlib import Path
 from typing import Callable, Dict, List
 
-from quant_trading_system.backtest.backtester import BacktestEngine
-from quant_trading_system.brokers.base import BrokerBase
-from quant_trading_system.brokers.zerodha import ZerodhaBroker
-from quant_trading_system.config.settings import get_strategy_classes, load_config
-from quant_trading_system.data.data_feed import DataFeed
-from quant_trading_system.execution.execution_engine import ExecutionEngine
-from quant_trading_system.portfolio.portfolio_manager import PortfolioManager
-from quant_trading_system.risk.risk_manager import RiskManager
-from quant_trading_system.scheduler.scheduler import TradingScheduler
-from quant_trading_system.strategies.base import StrategyBase
-from quant_trading_system.utils.models import RiskLimits, Signal, Tick, Bar
-from quant_trading_system.utils.notifications import send_slack_alert, send_telegram_alert
+from backtest.backtester import BacktestEngine
+from brokers.base import BrokerBase
+from brokers.zerodha import ZerodhaBroker
+from config.settings import get_strategy_classes, load_config
+from data.data_feed import DataFeed
+from execution.execution_engine import ExecutionEngine
+from portfolio.portfolio_manager import PortfolioManager
+from risk.risk_manager import RiskManager
+from scheduler.scheduler import TradingScheduler
+from strategies.base import StrategyBase
+from utils.models import RiskLimits, Signal, Tick, Bar
+from utils.notifications import send_slack_alert, send_telegram_alert
 
 
 class DummyBroker(BrokerBase):
@@ -45,8 +45,6 @@ class DummyBroker(BrokerBase):
 
 def import_strategy(path: str, name: str, params: Dict) -> StrategyBase:
     module_name, class_name = path.rsplit(".", 1)
-    if not module_name.startswith("quant_trading_system."):
-        module_name = f"quant_trading_system.{module_name}"
     module = importlib.import_module(module_name)
     cls = getattr(module, class_name)
     return cls(name=name, parameters=params)

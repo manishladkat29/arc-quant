@@ -4,10 +4,10 @@ from datetime import datetime
 from pathlib import Path
 from typing import Iterable, List
 
-from quant_trading_system.execution.execution_engine import ExecutionEngine
-from quant_trading_system.portfolio.portfolio_manager import PortfolioManager
-from quant_trading_system.strategies.base import StrategyBase
-from quant_trading_system.utils.models import Bar
+from execution.execution_engine import ExecutionEngine
+from portfolio.portfolio_manager import PortfolioManager
+from strategies.base import StrategyBase
+from utils.models import Bar
 
 logger = logging.getLogger(__name__)
 

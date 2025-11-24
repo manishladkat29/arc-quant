@@ -2,8 +2,8 @@ from collections import deque
 from statistics import mean, pstdev
 from typing import Deque, Dict, List
 
-from quant_trading_system.strategies.base import StrategyBase
-from quant_trading_system.utils.models import Bar, Signal
+from strategies.base import StrategyBase
+from utils.models import Bar, Signal
 
 
 class MeanReversionStrategy(StrategyBase):

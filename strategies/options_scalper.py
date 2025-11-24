@@ -1,7 +1,7 @@
 from typing import Dict, List, Optional
 
-from quant_trading_system.strategies.base import StrategyBase
-from quant_trading_system.utils.models import Tick, Signal
+from strategies.base import StrategyBase
+from utils.models import Tick, Signal
 
 
 class OptionsScalperStrategy(StrategyBase):

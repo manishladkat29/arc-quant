@@ -39,6 +39,6 @@ python main.py --mode paper --config config/config.yaml
 - Backtest/demo: CSV with headers `symbol,open,high,low,close,volume,start,end` (ISO datetime).
 
 ## Deployment
-- Build container: `docker build -t quant_trading_system .`
-- Run container (demo mode by default): `docker run --rm quant_trading_system`
+- Build container: `docker build -t arc-quant .`
+- Run container (demo mode by default): `docker run --rm arc-quant`
 - For live, mount config and pass env secrets.

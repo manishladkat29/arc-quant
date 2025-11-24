@@ -1,7 +1,7 @@
 import abc
 from typing import Dict, List
 
-from quant_trading_system.utils.models import Bar, Signal, Tick
+from utils.models import Bar, Signal, Tick
 
 
 class StrategyBase(abc.ABC):

@@ -1,7 +1,7 @@
 from typing import Dict, Tuple
 
-from quant_trading_system.strategies.base import StrategyBase
-from quant_trading_system.utils.models import Signal, Tick
+from strategies.base import StrategyBase
+from utils.models import Signal, Tick
 
 
 ENTRY_THRESHOLD = 0.05

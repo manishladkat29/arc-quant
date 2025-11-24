@@ -1,10 +1,10 @@
 from datetime import datetime
 
-from quant_trading_system.execution.execution_engine import ExecutionEngine
-from quant_trading_system.risk.risk_manager import RiskManager
-from quant_trading_system.strategies.arbitrage_cross_exchange import ArbitrageCrossExchangeStrategy
-from quant_trading_system.utils.models import Order, RiskLimits, Signal, Tick
-from quant_trading_system.portfolio.portfolio_manager import PortfolioManager
+from execution.execution_engine import ExecutionEngine
+from risk.risk_manager import RiskManager
+from strategies.arbitrage_cross_exchange import ArbitrageCrossExchangeStrategy
+from utils.models import Order, RiskLimits, Signal, Tick
+from portfolio.portfolio_manager import PortfolioManager
 
 
 class LocalBroker:

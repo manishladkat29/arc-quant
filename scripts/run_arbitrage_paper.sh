@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Usage:
-#   ./quant_trading_system/scripts/run_arbitrage_paper.sh
+#   ./scripts/run_arbitrage_paper.sh
 #
 # Preconditions:
 #   - Python 3 and venv available
@@ -24,4 +24,4 @@ pip install -r "$ROOT_DIR/requirements.txt" kiteconnect >/dev/null
 
 export PYTHONPATH="$ROOT_DIR"
 
-exec python3 -m quant_trading_system.main --mode paper --config "$ROOT_DIR/config/config.yaml"
+exec python3 -m main --mode paper --config "$ROOT_DIR/config/config.yaml"

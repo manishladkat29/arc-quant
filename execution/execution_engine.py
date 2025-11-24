@@ -2,9 +2,9 @@ import logging
 import time
 from typing import List, Optional
 
-from quant_trading_system.brokers.base import BrokerBase
-from quant_trading_system.risk.risk_manager import RiskManager
-from quant_trading_system.utils.models import Fill, Order, Signal
+from brokers.base import BrokerBase
+from risk.risk_manager import RiskManager
+from utils.models import Fill, Order, Signal
 
 logger = logging.getLogger(__name__)
 

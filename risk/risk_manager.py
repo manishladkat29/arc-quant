@@ -3,7 +3,7 @@ import time
 from collections import defaultdict, deque
 from typing import Deque, Dict
 
-from quant_trading_system.utils.models import Order, RiskLimits
+from utils.models import Order, RiskLimits
 
 logger = logging.getLogger(__name__)
 

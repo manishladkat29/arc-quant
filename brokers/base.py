@@ -1,7 +1,7 @@
 import abc
 from typing import Any, Dict, List, Optional
 
-from quant_trading_system.utils.models import Order
+from utils.models import Order
 
 
 class BrokerBase(abc.ABC):

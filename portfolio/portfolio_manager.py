@@ -1,7 +1,7 @@
 import logging
 from typing import Dict
 
-from quant_trading_system.utils.models import Fill, Position
+from utils.models import Fill, Position
 
 logger = logging.getLogger(__name__)
 

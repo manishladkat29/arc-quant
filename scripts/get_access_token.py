@@ -5,7 +5,7 @@ Helper script to exchange a Zerodha request_token for an access_token.
 Usage:
   export KITE_API_KEY=...
   export KITE_API_SECRET=...
-  python3 quant_trading_system/scripts/get_access_token.py --request-token <REQUEST_TOKEN_FROM_LOGIN>
+  python3 scripts/get_access_token.py --request-token <REQUEST_TOKEN_FROM_LOGIN>
 """
 
 import argparse

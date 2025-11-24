@@ -12,7 +12,7 @@ try:
 except ImportError:
     KiteTicker = None  # pragma: no cover - optional dependency
 
-from quant_trading_system.utils.models import Bar, Tick
+from utils.models import Bar, Tick
 
 logger = logging.getLogger(__name__)
 
